@@ -6,6 +6,7 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,10 +23,23 @@ class MainActivity : AppCompatActivity() {
         webView = findViewById(R.id.webView)
 
         // Allow your browser to intercept hyperlink clicks
-        webView.webViewClient = object: WebViewClient() {
+        webView.webViewClient = object : WebViewClient() {
             override fun onPageFinished(view: WebView?, url: String?) {
                 super.onPageFinished(view, url)
             }
+        }
+        goButton.setOnClickListener {
+            loadUrl()
+        }
+    }
+    private fun loadUrl() {
+        var url = urlEditText.text.toString().trim()
+        if (url.isNotEmpty()) {
+            if (!url.startsWith("http://") && !url.startsWith("https://")) {
+                url = "https://$url"
+            }
+        } else {
+            Toast.makeText(this, "Please enter a valid URL", Toast.LENGTH_SHORT).show()
         }
 
     }
