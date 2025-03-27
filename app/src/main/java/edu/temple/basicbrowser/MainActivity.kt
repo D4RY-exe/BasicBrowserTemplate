@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         webView = findViewById(R.id.webView)
 
         // Allow your browser to intercept hyperlink clicks
+        //write code so that you can type in a url and it will take you to that url
         webView.webViewClient = object : WebViewClient() {
             override fun onPageFinished(view: WebView?, url: String?) {
                 super.onPageFinished(view, url)
@@ -38,6 +39,7 @@ class MainActivity : AppCompatActivity() {
             if (!url.startsWith("http://") && !url.startsWith("https://")) {
                 url = "https://$url"
             }
+            webView.loadUrl(url)
         } else {
             Toast.makeText(this, "Please enter a valid URL", Toast.LENGTH_SHORT).show()
         }
