@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
     private fun loadUrl() {
-        var url = urlEditText.text.toString().trim()
+        val url = urlEditText.text.toString().trim()
         if (url.isNotEmpty()) {
             if (!url.startsWith("http://") && !url.startsWith("https://")) {
                 url = "https://$url"
